@@ -3,22 +3,14 @@ var models = require('../models');
 module.exports = {
   messages: {
     get: function (req, res) {
-      // var body = '';
-      // req.on('data', function(chunk) {
-      //   body += chunk;
-      // });
-      // req.on('end', function() {
-      //   models.messages.get(body);
-      // });
+      console.log('doing a get');
+      var message = {results:[{username:'conway', message: 'hi!', roomname: 'lobby'}]};
+      res.send(JSON.stringify(message));
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      // var body = '';
-      // req.on('data', function(chunk) {
-      //   body += chunk;
-      // });
-      // req.on('end', function() {
-      //   models.messages.post(body);
-      // });
+      // console.log("heard from controllers!!!!!!!!!!!!!!");
+      var body = req.body;     
+      models.messages.post(body);
     } // a function which handles posting a message to the database
   },
 

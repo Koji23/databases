@@ -11,7 +11,7 @@ var app = {
 
   init: function() {
     // Get username
-    app.username = window.location.search.substr(10);
+    // app.username = window.location.search.substr(10);
 
     // Cache jQuery selectors
     app.$message = $('#message');
@@ -60,6 +60,8 @@ var app = {
       contentType: 'application/json',
       data: { order: '-createdAt'},
       success: function(data) {
+        console.log(data);
+        data = JSON.parse(data);
         // Don't bother if we have nothing to work with
         if (!data.results || !data.results.length) { return; }
 
@@ -160,7 +162,7 @@ var app = {
       }
 
       var $message = $('<br><span/>');
-      $message.text(data.text).appendTo($chat);
+      $message.text(data.message).appendTo($chat);
 
       // Add the message to the UI
       app.$chats.append($chat);
