@@ -12,8 +12,8 @@ CREATE TABLE messages (
   PRIMARY KEY (id)
 );
 
--- INSERT INTO messages (user, message, room) 
--- VALUES ('jordan', 'hello', 'main');
+INSERT INTO messages (user, message, room) 
+VALUES ('Admin', 'Welcome to CHATTERBOX!', 'lobby');
 /* Create other tables and define schemas for them here! */
 
 

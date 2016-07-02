@@ -20,7 +20,6 @@ exports.insert = function(data) {
   var insertQuery = 'INSERT INTO messages ( user, message, room) VALUES (' + JSON.stringify(data.username) + ', ' + JSON.stringify(data.text) + ', ' + JSON.stringify(data.roomname) + ');';
   connection.query(insertQuery, function(err, res) {
     console.log(err, res);
-
   });
 
   connection.end();
@@ -50,7 +49,7 @@ exports.retrieve = function(cb) {
         message: rowData.message,
         room: rowData. roommname
       };
-    });
+    }).reverse();
     var messages = {results: sqlData};
     // console.log('!!!!!!!!!!!!!!!!!!!:::', messages);
     cb(messages);
@@ -85,3 +84,7 @@ exports.retrieve = function(cb) {
 
 
 //   {results:[{username:'jordan', message: 'hi!', roomname: 'lobby'}
+
+
+
+
