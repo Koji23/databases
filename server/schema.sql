@@ -2,10 +2,18 @@ CREATE DATABASE chat;
 
 USE chat;
 
+
 CREATE TABLE messages (
   /* Describe your table here.*/
+  id int, 
+  user varchar(20), 
+  message varchar(140), 
+  room varchar(20),
+  PRIMARY KEY (id)
 );
 
+-- INSERT INTO messages (user, message, room) 
+-- VALUES ('jordan', 'hello', 'main');
 /* Create other tables and define schemas for them here! */
 
 
