@@ -11,7 +11,7 @@ var app = {
 
   init: function() {
     // Get username
-    // app.username = window.location.search.substr(10);
+    app.username = window.location.search.substr(10);
 
     // Cache jQuery selectors
     app.$message = $('#message');
@@ -60,8 +60,8 @@ var app = {
       contentType: 'application/json',
       data: { order: '-createdAt'},
       success: function(data) {
-        console.log(data);
         data = JSON.parse(data);
+        console.log(data);
         // Don't bother if we have nothing to work with
         if (!data.results || !data.results.length) { return; }
 
@@ -70,7 +70,7 @@ var app = {
         var displayedRoom = $('.chat span').first().data('roomname');
         app.stopSpinner();
         // Only bother updating the DOM if we have a new message
-        if (mostRecentMessage.objectId !== app.lastMessageId || app.roomname !== displayedRoom) {
+        if (app.mostRecentResultsLength !== data.results.length || app.roomname !== displayedRoom) {
           // Update the UI with the fetched rooms
           app.populateRooms(data.results);
 
@@ -79,6 +79,7 @@ var app = {
 
           // Store the ID of the most recent message
           app.lastMessageId = mostRecentMessage.objectId;
+          app.mostRecentResultsLength = data.results.length;
         }
       },
       error: function(data) {

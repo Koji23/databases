@@ -9,8 +9,9 @@ module.exports = {
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      // console.log("heard from controllers!!!!!!!!!!!!!!");
+      // console.log("heard from controllers!!!!!!!!!!!!!!")
       var body = req.body;     
+      console.log('???????????', body);
       models.messages.post(body);
     } // a function which handles posting a message to the database
   },
