@@ -30,3 +30,6 @@ if (!module.parent) {
   console.log('Listening on', app.get('port'));
 }
 
+
+
+//http://127.0.0.1:3000/

@@ -2,7 +2,6 @@
 // Create a database connection and export it from this file.
 // You will need to connect with the user "root", no password,
 // and to the database "chat".
-var id = 5;
 
 exports.connect = function(data) {
 
@@ -18,11 +17,10 @@ exports.connect = function(data) {
 
   // console.log(connection);
 
-  console.log("ATTEMPTING WRITE TO DATABASE", data);
-  var insertQuery = 'INSERT INTO messages (id, user, message, room) VALUES (' + JSON.stringify(id) + ', ' + JSON.stringify(data.username) + ', ' + JSON.stringify(data.text) + ', ' + JSON.stringify(data.roomname) + ');';
+  var insertQuery = 'INSERT INTO messages ( user, message, room) VALUES (' + JSON.stringify(data.username) + ', ' + JSON.stringify(data.text) + ', ' + JSON.stringify(data.roomname) + ');';
   connection.query(insertQuery, function(err, res) {
     console.log(err, res);
-    id++;
+
   });
 
   connection.end();
