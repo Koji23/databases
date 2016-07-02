@@ -27,7 +27,7 @@ exports.insert = function(data) {
 
 };
 
-exports.retrieve = function(res) {
+exports.retrieve = function(cb) {
   var mysql = require('mysql');
   // console.log('heard from connect', body);
   var connection = mysql.createConnection({
@@ -38,19 +38,50 @@ exports.retrieve = function(res) {
     database: 'chat'
   });
 
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
   var insertQuery = 'SELECT * FROM messages';
-  connection.query(insertQuery, function(err, res, fields, stuff) {
-    console.log("error: ", err, "res: ", res, 'fields: ', fields, 'extra stuff? ', stuff);
-
+  
+  var sqlData;
+  connection.query(insertQuery, function(err, res, fields) {
+    // console.log("error: ", err, "res: ", res, 'fields: ', fields, 'extra stuff? ', stuff);
+    sqlData = res;
+    sqlData = sqlData.map(function(rowData) {
+      return {
+        username: rowData.user,
+        message: rowData.message,
+        room: rowData. roommname
+      };
+    });
+    var messages = {results: sqlData};
+    // console.log('!!!!!!!!!!!!!!!!!!!:::', messages);
+    cb(messages);
+    // res.send(JSON.stringify(messages));
   });
 
-
-
-  var message = {results:[{username:'jordan', message: 'hi!', roomname: 'lobby'}]};
-  res.send(JSON.stringify(message));
+  // console.log('!!!!!!!!!!!sqlData: ', sqlData);
 };
 
 //insert into ballerz(name, height,position) values ('jdan', '6ft', 'center')
 
+
+
+
+
+
+
+
+
+
+
+
+
+// [ RowDataPacket { id: 1, user: 'anonymous', message: 'hello', room: 'lobby' },
+//   RowDataPacket { id: 2, user: 'anonymous', message: 'hello', room: 'lobby' },
+//   RowDataPacket { id: 3, user: 'anonymous', message: 'hello', room: 'lobby' },
+//   RowDataPacket { id: 4, user: 'anonymous', message: 'hola', room: 'lobby' },
+//   RowDataPacket { id: 5, user: 'anonymous', message: 'hello', room: 'lobby' },
+//   RowDataPacket { id: 6, user: 'anonymous', message: 'hola', room: 'lobby' },
+//   RowDataPacket { id: 7, user: 'anonymous', message: 'sdafsdaf', room: 'lobby' },
+//   RowDataPacket { id: 8, user: 'anonymous', message: 'hello', room: 'lobby' } ]
+
+
+//   {results:[{username:'jordan', message: 'hi!', roomname: 'lobby'}

@@ -2,8 +2,13 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function (res) {
-      db.retrieve(res);
+    get: function (cb) {
+      // console.log('heloooooooo');
+      // console.log(db.retrieve());
+      // cb("from models!!!!   ", db.retrieve());
+      db.retrieve(function(messages) {
+        console.log('heard from models::::', messages);
+      });
     }, // a function which produces all the messages
     post: function (body) {
       console.log('heard from models', body);
