@@ -7,7 +7,7 @@ module.exports = {
       // console.log(db.retrieve());
       // cb("from models!!!!   ", db.retrieve());
       db.retrieve(function(messages) {
-        console.log('heard from models::::', messages);
+        cb(messages);
       });
     }, // a function which produces all the messages
     post: function (body) {
